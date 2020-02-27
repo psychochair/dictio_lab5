@@ -20,17 +20,35 @@ public class BodyDictioPanel extends JPanel {
         saisieMotDefinition.setText(definition);
     }
 
+     /**
+     * Modifie une JList pour setter une liste de Mot String
+     * @param listeMots la liste des mots
+     */
     public void setListeAllMots(String[] listeMots) {
         listeAllMots.setListData(listeMots);
     }
 
+     /**
+     * Getter pour le String brute de JTextField saisieMot
+     *
+     * @return le mot saisie par le user.
+     */
     public String getSaisieMotText() {
         return saisieMot.getText();
     }
-
+    /**
+     * Getter pour le String brute de JTextField saisieDefinition
+     *
+     * @return la définition.
+     */
     public String getSaisieMotDefinition() {
         return  saisieMotDefinition.getText();
     }
+    
+     /**
+     * Constructeur qui va instancier le JPanel et ses différentes composantes GUI
+     *
+     */
     public BodyDictioPanel() {
 
         this.setLayout(new GridLayout());
