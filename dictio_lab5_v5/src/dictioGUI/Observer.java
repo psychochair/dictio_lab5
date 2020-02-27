@@ -12,10 +12,17 @@ public class Observer {
         this.gui = composants;
     }
 
+    /**
+     * va mettre a jour la liste des mots dans le UI
+     * @param listeMots liste des mots (pas leurs définition) en String[]
+     */
     public void documentTxtCharger(String[] listeMots) {
         gui.setListeAllMots(listeMots);
     }
 
+    /**
+     * va mettre a jour la liste des mots dans le UI et save le mot dans le dictionnaire LexiNode
+     */
     public void ajouterEditer() {
 
         String motText = gui.getSaisieMotText();
