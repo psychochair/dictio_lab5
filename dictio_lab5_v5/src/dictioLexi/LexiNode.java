@@ -61,6 +61,13 @@ public class LexiNode {
     public void ajouterEnfant(LexiNode enfant) {
         this.enfants.add(enfant);
     }
+    
+    /**
+     * Méthode récursive qui va ajouter un mot en passant par les noeuds. Si un noeud d'une lettre n'existe pas, il sera crée
+     * @param motAjoute motAjoute[0] est le mot et motAjoute[1] est sa définition.
+     * @param indexLettreActuelle  l'index char du mot
+     * @param indexDerniereLettre  le dernier index char du mot afin de savoir quand s'arrêter
+     */
     public void ajouterMot(String[] motAjoute, int indexLettreActuelle, int indexDerniereLettre) {
 
         if (indexLettreActuelle > indexDerniereLettre) {
@@ -80,6 +87,12 @@ public class LexiNode {
 
     }
 
+    /**
+     * Retourne une liste des mots qui commencent par une chaîne en format String[]
+     * Elle va récupérer que le mot (pas la definition) de chaque LexiNode de la méthode getMotDisponible
+     * @param baseMot la chaîne dont le mot doit commencer.
+     * @return une liste String[] des mots disponible (pas de définition, juste le mot)
+     */
     public String[] getMotDisponibleToString(String baseMot) {
 
         ArrayList<LexiNode> listemot = getMotDisponible(baseMot);
@@ -93,6 +106,9 @@ public class LexiNode {
 
     }
 
+    /**
+     * @return une liste String[] de tous les mots à partir de se LexiNode (ses enfants)
+     */
     public String[] getAllMots() {
 
         ArrayList<LexiNode> listeMots = ChercherMots();
@@ -108,6 +124,10 @@ public class LexiNode {
 
     }
 
+    /**
+     * @param baseMot la chaîne dont le mot doit commencer.
+     * @return une liste de LexiNode de qui commencent par une chaîne
+     */
     public ArrayList<LexiNode> getMotDisponible(String baseMot) {
         ArrayList<LexiNode> listeMotsDispo = new ArrayList<>();
         LexiNode mot = getLexiNode(baseMot, 0, baseMot.length()-1);
@@ -117,6 +137,10 @@ public class LexiNode {
         return listeMotsDispo;
     }
 
+     /**
+     * Sert a faire la conversion d'une collection de LexiNode en String[][] approprié pour la sauvegarde dans la classe NaviguationFichier
+     * @return une liste des mots et de leurs définitions en format String[][] valide
+     */
     public String[][] listeAllMots() {
         Collection<LexiNode> listeLexi = ChercherMots();
         List<String> listeMots = new ArrayList<String>();
@@ -132,6 +156,11 @@ public class LexiNode {
 
         return strArray;
     }
+    
+    /**
+     * Méthode récursive qui va récupérer tous les LexiNode qui ont une définition (qui est donc un mot courant)
+     * @return une liste de LexiNode qui ont une définition
+     */
     public ArrayList<LexiNode> ChercherMots() {
         ArrayList<LexiNode> listeMotsDispo = new ArrayList<>();
         if (motCourant != null)
@@ -144,6 +173,14 @@ public class LexiNode {
 
         return listeMotsDispo;
     }
+    
+     /**
+     * Méthode récursive qui va retourner un LexiNode si le mot (String) existe. Retourne Null si le LexiNode n'existe pas
+     * @param baseMot le mot en String qu'on cherche
+     * @param indexLettreActuelle l'index char du mot qu'on cherche, parce qu'on itère à travers chaque lettre du mot
+     * @param indexDerniereLettre le dernier index du mot pour savoir quand s'arrêter
+     * @return le lexiNode trouvé ou null
+     */
     public LexiNode getLexiNode(String baseMot, int indexLettreActuelle, int indexDerniereLettre) {
 
         if (indexLettreActuelle > indexDerniereLettre) {
@@ -157,7 +194,13 @@ public class LexiNode {
 
         return null;
     }
+    
 
+    /**
+     * retourne un enfant LexiNode qui a la même lettre (char) associé à elle
+     * @param lettre la lettre char qu'on cherche dans la liste d'enfants.
+     * @return le lexiNode trouvé ou null
+     */
     public LexiNode trouverEnfant(char lettre) {
 
         for (LexiNode enfant : this.enfants){
