@@ -30,29 +30,28 @@ public class BodyDictioPanel extends JPanel {
 
      /**
      * Getter pour le String brute de JTextField saisieMot
-     *
      * @return le mot saisie par le user.
      */
     public String getSaisieMotText() {
         return saisieMot.getText();
     }
+
     /**
      * Getter pour le String brute de JTextField saisieDefinition
-     *
      * @return la définition.
      */
     public String getSaisieMotDefinition() {
         return  saisieMotDefinition.getText();
     }
-    
-     /**
+
+    /**
      * Constructeur qui va instancier le JPanel et ses différentes composantes GUI
-     *
+     * Precondition: null
+     * Postcondition: Instanciation d'un JPanel et des composantes de l'app
      */
     public BodyDictioPanel() {
 
         this.setLayout(new GridLayout());
-
 
         saisieMot = new JTextField();
         saisieMot.addKeyListener(new KeyAdapter() {
